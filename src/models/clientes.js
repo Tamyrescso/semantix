@@ -10,7 +10,7 @@ const Attributes = {
     type: DataTypes.STRING, 
     allowNull: false,
   },
-  nome: {
+  email: {
     type: DataTypes.STRING, 
     allowNull: false,
   },
