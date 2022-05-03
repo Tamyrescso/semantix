@@ -1,5 +1,5 @@
 const { Clientes } = require('../models');
-const validateClient = require('./schema/clientes.validation');
+const validateClient = require('./validations/clientes.validation');
 
 const list = async () => {
   const clients = await Clientes.findAll();
@@ -14,7 +14,6 @@ const create =  async (nome, email) => {
   const alreadyExists = await Clientes.findOne({ where: { email } });
   if (alreadyExists) return { code: 409, data: { message: 'Client already registered' } };
 
-  console.log(error, alreadyExists)
   const newClient = await Clientes.create({nome, email});
 
   return { code: 201, data: newClient };
