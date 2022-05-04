@@ -50,4 +50,4 @@ module.exports = {
   create,
   update,
   destroy
-}
+};

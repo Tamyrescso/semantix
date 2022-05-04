@@ -15,7 +15,7 @@ const Attributes = {
     allowNull: false,
   },
   preço: {
-    type: DataTypes.DOUBLE,
+    type: DataTypes.DECIMAL(10,2),
     allowNull: false,
   },
 }
