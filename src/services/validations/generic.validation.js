@@ -13,7 +13,7 @@ const emailValidation = (email) => {
     case blank(email):
       return returnEmptyErrorMessage('email')
     case regexMatch(/^.+@\w+(.com)$/, email):
-      return '"email" must be valid';
+      return 'email must be valid';
     default:
       return null;
   }
