@@ -27,8 +27,46 @@ const updateClient = {
 	"telefone": "(24)0000-0000"
 }
 
+const products = [
+	{
+		"id": 2,
+		"nome": "Traje de encolhimento",
+		"quantidadeEstoque": 26,
+		"preço": "300.00"
+	},
+	{
+		"id": 3,
+		"nome": "Escudo do Capitão América",
+		"quantidadeEstoque": 35,
+		"preço": "400.00"
+	},
+	{
+		"id": 1,
+		"nome": "Martelo do Thor",
+		"quantidadeEstoque": 0,
+		"preço": "500.00"
+	}
+];
+
+const createProduct = {
+	"id": 4,
+	"nome": "Capa da invisibilidade",
+	"quantidadeEstoque": 50,
+	"preço": "400.00"
+};
+
+const updateProduct = {
+  "id": 2,
+  "nome": "Traje de encolhimento",
+  "quantidadeEstoque": 26,
+  "preço": "300.00"
+};
+
 module.exports = {
   clients,
   createClient,
-  updateClient
+  updateClient,
+  products,
+  createProduct,
+  updateProduct
 }
