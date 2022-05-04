@@ -19,6 +19,7 @@ const Attributes = {
   updatedAt: {
     type: "TIMESTAMP",
     defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
+    allowNull: false,
   },
 }
 module.exports = (sequelize) => {
