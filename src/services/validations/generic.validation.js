@@ -1,59 +1,51 @@
 const { blank,
   isNotExistent,
   regexMatch,
-  errorMessage,
-  isNotANumber } = require('./schema');
-
-const nameValidation = (name) => {
-  switch (true) {
-    case isNotExistent(name):
-      return errorMessage.nameRequired;
-    case blank(name):
-      return errorMessage.nameEmpty;
-    default:
-      return null;
-  }
-};
+  returnIsRequiredErrorMessage,
+  returnEmptyErrorMessage,
+  isNotANumber, 
+  returnIsNotANumberErrorMessage} = require('./schema');
 
 const emailValidation = (email) => {
   switch (true) {
     case isNotExistent(email):
-      return errorMessage.emailRequired;
+      return returnIsRequiredErrorMessage('email');
     case blank(email):
-      return errorMessage.emailEmpty;
+      return returnEmptyErrorMessage('email')
     case regexMatch(/^.+@\w+(.com)$/, email):
-      return errorMessage.emailValid;
+      return '"email" must be valid';
     default:
       return null;
   }
 };
 
-const inventoryValidation = (qnt) => {
+const genericLengthValidation = (name, field) => {
+  switch (true) {
+    case isNotExistent(name):
+      return returnIsRequiredErrorMessage(field);
+    case blank(name):
+      return returnEmptyErrorMessage(field);
+    default:
+      return null;
+  }
+};
+
+const genericNumberValidation = (qnt, field) => {
   switch (true) {
     case isNotExistent(qnt):
-      return errorMessage.inventoryRequired;
+      return returnIsRequiredErrorMessage(field);
     case isNotANumber(qnt):
-      return errorMessage.inventoryNotNumber
+      return returnIsNotANumberErrorMessage(field)
     default:
       return null;
   }
 };
 
-const priceValidation = (price) => {
-  switch (true) {
-    case isNotExistent(price):
-      return errorMessage.priceRequired;
-    case isNotANumber(price):
-      return errorMessage.priceNotNumber;
-    default:
-      return null;
-  }
-};
+
 
 
 module.exports = {
-  nameValidation,
   emailValidation,
-  inventoryValidation,
-  priceValidation,
+  genericLengthValidation,
+  genericNumberValidation,
 };

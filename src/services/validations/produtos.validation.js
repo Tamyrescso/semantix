@@ -1,9 +1,9 @@
-const { nameValidation, inventoryValidation, priceValidation } = require('./generic.validation');
+const { nameValidation, genericNumberValidation } = require('./generic.validation');
 
 const validateProduct = (name, inventory, price) => {
     const errorName = nameValidation(name);
-    const errorInventory = inventoryValidation(inventory);
-    const errorPrice = priceValidation(price);
+    const errorInventory = genericNumberValidation(inventory, 'quantidadeEstoque');
+    const errorPrice = genericNumberValidation(price, 'preço');
     if (errorName) return errorName;
     if (errorInventory) return errorInventory;
     if (errorPrice) return errorPrice;
