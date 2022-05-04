@@ -1,4 +1,5 @@
 const { DataTypes } = require('sequelize');
+const sequelize = require('sequelize');
 
 const Attributes = {
   id: {
@@ -10,10 +11,15 @@ const Attributes = {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  dataCompra: {
-    type: DataTypes.DATE,
+  createdAt: {
+    type: "TIMESTAMP",
+    defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
     allowNull: false,
-  }
+  },
+  updatedAt: {
+    type: "TIMESTAMP",
+    defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
+  },
 }
 module.exports = (sequelize) => {
   const Compras = sequelize.define(
@@ -21,7 +27,7 @@ module.exports = (sequelize) => {
     Attributes,
     {
       modelName: 'Compras',
-      timestamps: false,
+      timestamps: true,
       underscored: false,
     }
   );

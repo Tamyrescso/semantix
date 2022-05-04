@@ -18,11 +18,13 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
-      dataCompra: {
-        type: Sequelize.DATE,
+      createdAt: {
         allowNull: false,
-        defaultValue: Sequelize.fn("NOW")
+        type: Sequelize.DATE
       },
+      updatedAt: {
+        type: Sequelize.DATE
+      }
     });
   },
   async down(queryInterface, _Sequelize) {
