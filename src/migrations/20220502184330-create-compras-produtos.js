@@ -22,6 +22,10 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
+      quantidade: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      }
     });
   },
   async down(queryInterface, _Sequelize) {

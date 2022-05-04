@@ -1,5 +1,10 @@
-module.exports = (sequelize) => {
-  const ComprasProdutos = sequelize.define('ComprasProdutos', {},
+module.exports = (sequelize, DataTypes) => {
+  const ComprasProdutos = sequelize.define('ComprasProdutos', {
+      quantidade: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+    },
     {
       underscored: false,
       timestamps: false,
