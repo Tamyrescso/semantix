@@ -7,23 +7,23 @@ const list = async () => {
   return { code: 200, data: clients };
 };
 
-const create =  async (nome, email) => {
-  const error = validateClient(nome, email);
+const create =  async (nome, email, telefone) => {
+  const error = validateClient(nome, email, telefone);
   if (error) return { code: 400, data: { message: error } };
 
   const alreadyExists = await Clientes.findOne({ where: { email } });
   if (alreadyExists) return { code: 409, data: { message: 'Client already registered' } };
 
-  const newClient = await Clientes.create({nome, email});
+  const newClient = await Clientes.create({nome, email, telefone});
 
   return { code: 201, data: newClient };
 };
 
-const update = async (nome, email, id) => {
-  const error = validateClient(nome, email);
+const update = async (nome, email, telefone, id) => {
+  const error = validateClient(nome, email, telefone);
   if (error) return { code: 400, data: { message: error } };
 
-  await Clientes.update({ nome, email }, { where: { id } });
+  await Clientes.update({ nome, email, telefone }, { where: { id } });
 
   const updated = await Clientes.findByPk(id);
 

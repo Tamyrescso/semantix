@@ -14,6 +14,10 @@ const Attributes = {
     type: DataTypes.STRING, 
     allowNull: false,
   },
+  telefone: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  }
 }
 module.exports = (sequelize) => {
   const Clientes = sequelize.define(

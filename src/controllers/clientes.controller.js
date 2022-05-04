@@ -12,8 +12,8 @@ const list = async (_req, res, next) => {
 
 const create = async (req, res, next) => {
   try {
-    const { nome, email } = req.body;
-    const { code, data } = await clientesService.create(nome, email);
+    const { nome, email, telefone } = req.body;
+    const { code, data } = await clientesService.create(nome, email, telefone);
 
     return res.status(code).json(data);
   } catch (e) {
@@ -24,9 +24,9 @@ const create = async (req, res, next) => {
 const update = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { nome, email } = req.body;
+    const { nome, email, telefone } = req.body;
 
-    const { code, data } = await clientesService.update(nome, email, id);
+    const { code, data } = await clientesService.update(nome, email, telefone, id);
 
     return res.status(code).json(data);
   } catch (e) {
@@ -50,4 +50,4 @@ module.exports = {
   create,
   update,
   destroy
-}
+};
