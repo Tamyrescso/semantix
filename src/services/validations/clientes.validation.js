@@ -3,7 +3,7 @@ const { genericLengthValidation, emailValidation } = require('./generic.validati
 const validateClient = (name, email, telefone) => {
     const errorName = genericLengthValidation(name, 'nome');
     const errorEmail = emailValidation(email);
-    const errorPhone = genericLengthValidation(telefone);
+    const errorPhone = genericLengthValidation(telefone, 'telefone');
     if (errorName) return errorName;
     if (errorEmail) return errorEmail;
     if (errorPhone) return errorPhone;
