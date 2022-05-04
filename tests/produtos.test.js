@@ -116,11 +116,11 @@ describe('Rota /produtos', () => {
     it('Se retorna o status 200 e o produto atualizado', async () => {
       chaiHttpResponse = await chai
       .request(app)
-      .put('/produtos/2')
+      .put('/produtos/3')
       .send({
-        "nome": "Traje de encolhimento",
-        "quantidadeEstoque": 26,
-        "preço": 300.00
+        "nome": "Escudo do Capitão América",
+        "quantidadeEstoque": 50,
+        "preço": 400.00
       });
 
       expect(chaiHttpResponse).to.have.status(200);
