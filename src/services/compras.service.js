@@ -3,8 +3,6 @@ const { validateOrder,
   ifProductsExist,
   ifClientExist,
   ifOrderExist } = require('./validations/compras.validation');
-const Sequelize = require('sequelize');
-const Op = Sequelize.Op;
 
 const list = async () => {
   const orders = await Compras.findAll({
@@ -28,6 +26,9 @@ const list = async () => {
 };
 
 const listByClient = async (id) => {
+  const clientDoesntExist = await ifClientExist(id);
+  if (clientDoesntExist) return clientDoesntExist;
+  
   const findById = await Compras.findAll({
     attributes: { exclude: ['clienteId'] },
     where : { clienteId: id },
@@ -50,16 +51,14 @@ const listByClient = async (id) => {
   return { code: 200, data: findById };
 };
 
-const listByClientAndDate = async (id, dateFormat, q) => {
+const listByClientAndDate = async (id, dateFormat, query) => {
   //código baseado no link https://stackoverflow.com/questions/55682902/node-js-sequelize-select-query-by-month
   const orders = await Compras.findAll({
     attributes: { exclude: ['clienteId'] },
-    where: {
-      clienteId: id,
-      [Op.and]: [
-        sequelize.fn(`EXTRACT(${dateFormat} from "createdAt")=`, q)
-      ]
-    },
+    where: [
+      { clienteId: id } ,
+      sequelize.fn(`EXTRACT(${dateFormat} from "createdAt")=`, query)
+    ],
     include: [
       {
         model: Clientes,
@@ -92,13 +91,13 @@ const updateInventory = async (compras, id) => {
   // repõe os itens no estoque
   await Promise.all([...orders].map(({ produtosId, quantidade }) => incrementInventory(produtosId, quantidade)));
   // exclui relação de compras e produtos anterior de acordo com o id da compra
-  await ComprasProdutos.destroy({ where: { id } });
+  await ComprasProdutos.destroy({ where: { comprasId: id } });
   // retira do estoque as quantidades dos itens específicos enviados no update
-  await Promise.all(compras.map(({ produtoId, quantidade }) => decrementInventory(produtoId, quantidade)));
+  return await Promise.all(compras.map(({ produtoId, quantidade }) => decrementInventory(produtoId, quantidade)));
 };
 
 const create =  async (clienteId, compras) => {
-  const error = validateOrder(clienteId, compras, 'clienteId');
+  const error = await validateOrder(clienteId, compras, 'clienteId');
   if (error) return { code: 400, data: { message: error } };
 
   const clientDoesntExist = await ifClientExist(clienteId);

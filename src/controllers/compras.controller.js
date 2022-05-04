@@ -13,7 +13,7 @@ const list = async (_req, res, next) => {
 const listByClient = async (req, res, next) => {
   try {
     const { id } = req.params;
-    if (!req.query.dateFormat) {
+    if (!req.query.q) {
       const { code, data } = await comprasService.listByClient(id);
       return res.status(code).json(data);
     }
