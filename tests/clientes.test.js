@@ -93,10 +93,10 @@ describe('Rota /clientes', () => {
   describe('Testa a atualização no cadastro de clientes', () => {
     before(async () => {
       sinon
-        .stub(Clientes, 'create')
+        .stub(Clientes, 'update')
         .resolves(updateClient);
     })
-    after(() => (Clientes.create).restore());
+    after(() => (Clientes.update).restore());
     it('Se retorna o status 200 e o cliente atualizado', async () => {
       chaiHttpResponse = await chai
       .request(app)
@@ -163,7 +163,7 @@ describe('Rota /clientes', () => {
         .resolves();
     })
     after(() => (Clientes.destroy).restore());
-    it('Se retorna o status 204 e o cliente atualizado', async () => {
+    it('Se retorna o status 204 e corpo vazio', async () => {
       chaiHttpResponse = await chai
       .request(app)
       .delete('/clientes/2');
