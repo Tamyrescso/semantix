@@ -16,6 +16,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      telefone: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      }
     });
   },
   async down(queryInterface, _Sequelize) {
