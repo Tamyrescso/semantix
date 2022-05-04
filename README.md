@@ -17,6 +17,20 @@ Além disso, o estoque de produtos é alterado ao criar uma nova compra, atualiz
 
 ![cobertura dos testes](https://github.com/Tamyrescso/semantix/blob/main/images/cobertura.png)
 
+## Como utilizar
+
+ ##### Fazendo requisições diretamente para o endpoint (próximo tópico) com deploy no heroku e banco de dados no supabase.
+ ##### Ou localmente, seguindo esses passos:
+ - No terminal rode`git clone git@github.com:Tamyrescso/semantix.git`
+ - Na pasta raiz rode `npm install`
+ - Crie um arquivo `.env`
+ - Coloque as variáveis de conexão com o seu banco de dados, seguindo o padrão dos nomes de variáveis contidas no arquivo /config/config.js
+ - Crie um variável de ambiente PORT caso você use uma porta específica para rodar a API ou não crie e ela será rodada na porta 3000 por default.
+ - Crie o banco de dados com o comando `npx sequelize db:create`
+ - Crie as tabelas com o comando `npx sequelize db:migrate`
+ - Popule as tabelas com o comando `npx sequelize db:seed:all`
+ - Rode o server com o comando `npm start` ou `npm run dev`
+
 ## Endpoints e retornos
 Endpoint base: `https://semantix-challenge-tamyres.herokuapp.com/`
 
