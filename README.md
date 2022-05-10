@@ -86,9 +86,12 @@ O id do produto a ser deletado deverá ser passado por parâmetro no endpoint.
  Retorna: id da compra, quando foi criada e atualizada, o id do cliente que realizou a compra e as informações dele (nome, email, telefone) e retorna os produtos que compõem a compra junto com as informações de cada produto (id, nome, preço, quantidade comprada).
  - **GET `https://semantix-challenge-tamyres.herokuapp.com/compras/cliente/:id/:dateFormat?q=`** 	Filtra as compras de um cliente específico baseado na data que ela foi realizada.
 É preciso passar o id do cliente e o formato que deseja buscar seja: day, month or year. Exemplos:
-`https://semantix-challenge-tamyres.herokuapp.com/compras/cliente/1/day?q=6`
-`https://semantix-challenge-tamyres.herokuapp.com/compras/cliente/2/month?q=5`
-`https://semantix-challenge-tamyres.herokuapp.com/compras/cliente/3/year?q=2011`
+
+	`https://semantix-challenge-tamyres.herokuapp.com/compras/cliente/1/day?q=6`
+
+	`https://semantix-challenge-tamyres.herokuapp.com/compras/cliente/2/month?q=5`
+
+	`https://semantix-challenge-tamyres.herokuapp.com/compras/cliente/3/year?q=2011`
 
 	 Retorna: id da compra, quando foi criada e atualizada, o id do cliente que realizou a compra e as informações dele (nome, email, telefone) e retorna os produtos que compõem a compra junto com as informações de cada produto (id, nome, preço, quantidade comprada).
  
